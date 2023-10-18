@@ -15,7 +15,7 @@
       <v-container class="">
         <v-row>
           <v-col>
-            <v-sheet width="1600" class="mx-auto">
+            <v-sheet width="1620" class="mx-auto">
               <v-form @submit.prevent>
                 <v-text-field v-model="this.cercar" :rules="rules" label="Cercar"></v-text-field>
               </v-form>
@@ -53,7 +53,7 @@
                     </v-card-actions>
 
                     <v-expand-transition >
-                      <div v-show="show" >
+                      <div v-if="show && imdbID==n.imdbID" >
                         <v-divider></v-divider>
                         
                         <v-card-text>
@@ -93,10 +93,10 @@
 
 <style scoped>
 .my-custom-button {
-  background-color: #3498db; /* Color de fondo */
-  color: white; /* Color del texto */
+  background-color: #f9f9f9; /* Color de fondo */
+  color: rgb(0, 0, 0); /* Color del texto */
   border: none; /* Quita el borde */
-  border-radius: 5px; /* Bordes redondeados */
+  border-radius: 55px; /* Bordes redondeados */
   padding: 10px 20px; /* Espaciado interno */
   font-size: 16px; /* Tamaño de fuente */
   cursor: pointer; /* Cambia el cursor al pasar el ratón */
@@ -104,7 +104,8 @@
 
   /* Estilos al pasar el ratón sobre el botón */
   &:hover {
-    background-color: #2577a1; /* Cambia el color de fondo al pasar el ratón */
+    background-color: #000000; /* Cambia el color de fondo al pasar el ratón */
+    color:#ffffff
   }
 }
 </style>
