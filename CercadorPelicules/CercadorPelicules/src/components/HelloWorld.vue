@@ -1,7 +1,7 @@
 
-<template>
-  <v-layout class="rounded rounded-md">
-    <v-app-bar title="Cercador Pel·licules"></v-app-bar>
+<template class="template-background">
+  <v-layout class="rounded rounded-md" style="background-color:black;">
+    <v-app-bar title="Cercador Pel·licules" style="color: yellow; background-color: black;"></v-app-bar>
 
     <!--<v-navigation-drawer>
       <v-list>
@@ -9,32 +9,32 @@
       </v-list>
     </v-navigation-drawer>-->
 
-    <v-main class="d-flex align-center justify-center" style="min-height: 300px ">
+    <v-main class="d-flex align-center justify-center" style="min-height: 300px; ">
 
 
-      <v-container class="">
-        <v-row>
+      <v-container class="" style="background-color: black;">
+        <v-row style="background-color: black;">
           <v-col>
-            <v-sheet width="1620" class="mx-auto">
+            <v-sheet width="1620" class="mx-auto" >
               <v-form @submit.prevent>
-                <v-text-field v-model="this.cercar" :rules="rules" label="Cercar"></v-text-field>
+                <v-text-field v-model="this.cercar" :rules="rules" label="Escriu el nom: " class="custom"></v-text-field>
               </v-form>
             </v-sheet>
           </v-col>
           <v-col>
-            <v-btn class="my-custom-button" @click="llamada">Button</v-btn>
+            <v-btn class="my-custom-button" @click="llamada">Buscar</v-btn>
           </v-col>
         </v-row>
-        <v-row no-gutters="">
-          <v-col v-for="n in pelicules.Search" :key="n" cols="12" sm="4" >
+        <v-row no-gutters="" style="background-color: black;" >
+          <v-col v-for="n in pelicules.Search" :key="n" cols="12" sm="4" style="background-color: black;">
             
-            <v-sheet class="ma-2 pa-2">
-              <v-sheet width="300" height="" class="mx-auto">
+            <v-sheet class="ma-2 pa-2" style="background-color: black;">
+              <v-sheet width="300" height="" class="mx-auto" style="background-color: black;">
                 <v-form disabled>
-                  <v-card class="mx-auto" max-width="344">
+                  <v-card class="mx-auto" max-width="344" style="background-color: black;">
                     <v-img :src="n.Poster" height="500px" cover></v-img>
 
-                    <v-card-title >
+                    <v-card-title style="color: #ffffff;">
                       {{ n.Title }}
                     </v-card-title>
 
@@ -43,21 +43,23 @@
                     </v-card-subtitle>
 
                     <v-card-actions>
-                      <v-btn color="orange-lighten-2" variant="text">
+                      <v-btn color="yellow" variant="text" >
                         Info
                       </v-btn>
 
                       <v-spacer></v-spacer>
 
-                      <v-btn :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'" @click="llamadaInfo(n.imdbID)" ></v-btn>
+                      <v-btn color="yellow" :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'" @click="llamadaInfo(n.imdbID)" ></v-btn>
                     </v-card-actions>
 
                     <v-expand-transition >
                       <div v-if="show && imdbID==n.imdbID" >
                         <v-divider></v-divider>
                         
-                        <v-card-text>
+                        <v-card-text style="color: #ffffff;">
                           <b>Title: </b>{{ info.Title }}
+                          <br>
+                          <b>Plot:</b> {{ info.Plot }}
                           <br>
                           <b>Director: </b>{{ info.Director }}
                           <br>
@@ -92,8 +94,16 @@
 </template>
 
 <style scoped>
+.template-background {
+  background-color: black;
+  /* Otros estilos para el elemento <template> si es necesario */
+}
+.custom {
+  color: white; /* Texto en blanco */
+  background-color: black; /* Fondo negro */
+}
 .my-custom-button {
-  background-color: #f9f9f9; /* Color de fondo */
+  background-color:yellow; /* Color de fondo */
   color: rgb(0, 0, 0); /* Color del texto */
   border: none; /* Quita el borde */
   border-radius: 55px; /* Bordes redondeados */
@@ -105,7 +115,7 @@
   /* Estilos al pasar el ratón sobre el botón */
   &:hover {
     background-color: #000000; /* Cambia el color de fondo al pasar el ratón */
-    color:#ffffff
+    color:yellow
   }
 }
 </style>
