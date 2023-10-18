@@ -26,7 +26,8 @@
           </v-col>
         </v-row>
         <v-row no-gutters="">
-          <v-col v-for="n in pelicules.Search" :key="n" cols="12" sm="4">
+          <v-col v-for="n in pelicules.Search" :key="n" cols="12" sm="4" >
+            
             <v-sheet class="ma-2 pa-2">
               <v-sheet width="300" height="" class="mx-auto">
                 <v-form disabled>
@@ -48,21 +49,33 @@
 
                       <v-spacer></v-spacer>
 
-                      <v-btn :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'" @click="show = !show"></v-btn>
+                      <v-btn :icon="show ? 'mdi-chevron-up' : 'mdi-chevron-down'" @click="llamadaInfo(n.imdbID)" ></v-btn>
                     </v-card-actions>
 
-                    <v-expand-transition>
-                      <div v-show="show">
+                    <v-expand-transition >
+                      <div v-show="show" >
                         <v-divider></v-divider>
-
+                        
                         <v-card-text>
-                          Titol: {{ n.Title }}
+                          <b>Title: </b>{{ info.Title }}
                           <br>
-                          Any: {{ n.Year }}
+                          <b>Director: </b>{{ info.Director }}
                           <br>
-                          Tipus: {{ n.Type }}
+                          <b>Writer: </b>{{ info.Writer }}
                           <br>
-                          ImdbID: {{ n.imdbID }}
+                          <b>Actors: </b>{{ info.Actors }}
+                          <br>
+                          <b>Genre: </b>{{ info.Genre }}
+                          <br>
+                          <b>RunTime: </b>{{ info.Runtime }}
+                          <br>
+                          <b>Released: </b>{{ info.Released }}
+                          <br>
+                          <b>Awards: </b>{{ info.Awards }}
+                          <br>
+                          
+                          <br>
+                          
                         </v-card-text>
                       </div>
                     </v-expand-transition>
@@ -96,14 +109,16 @@
 }
 </style>
 <script >
-import { getPelicules } from "./comunicationsManager.js";
+import { getInfo, getPelicules } from "./comunicationsManager.js";
 
 export default {
   data() {
     return {
       show: false,
       pelicules: [],
+      info: [],
       cercar: "",
+      imdbID:"",
     }
 
 
@@ -112,6 +127,12 @@ export default {
     llamada(){
       console.log("llamada");
       getPelicules(this,this.cercar)
+    },
+    llamadaInfo(Id){
+      this.imdbID=Id
+      this.show = !this.show
+      console.log("info")
+      getInfo(this,this.imdbID)
     }
   }
 }
