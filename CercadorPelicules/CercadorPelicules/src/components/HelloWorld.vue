@@ -76,8 +76,6 @@
                           <b>Awards: </b>{{ info.Awards }}
                           <br>
                           
-                          <br>
-                          
                         </v-card-text>
                       </div>
                     </v-expand-transition>
